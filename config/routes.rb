@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :user
+  devise_for :user, :controllers => { :confirmations => "confirmations" }
+
+  devise_scope :user do
+  	put 'user/confirmation', to: 'confirmations#update'
+  end
+  
   
   resources :holiday_lists
   resources :users
